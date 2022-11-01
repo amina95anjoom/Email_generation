@@ -1,4 +1,6 @@
-pip install openai
-pip install tensorflow
-pip install streamlit
-pip install config
+openai==0.24.0
+tensorflow==
+streamlit
+config
+transformers==4.25.0
+torch==1.12.1
