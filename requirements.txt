@@ -4,3 +4,4 @@ streamlit
 config
 transformers==4.25.0
 torch==1.12.1
+gunicorn
