@@ -1,5 +1,8 @@
 openai==0.24.0
-tensorflow==
+tensorflow==2.10.0
 streamlit==1.14.0
-transformers==4.25.0
+transformers==4.3.0
 torch==1.12.1
+protobuf==3.15.3
+nltk==3.5
+sentencepiece==0.1.95
