@@ -1,7 +1,5 @@
 openai==0.24.0
 tensorflow==
-streamlit
-config
+streamlit==1.14.0
 transformers==4.25.0
 torch==1.12.1
-gunicorn
