@@ -8,10 +8,12 @@ Original file is located at
 """
 
 import openai
-
+import torch
+from transformers import AutoModelForSeq2SeqLM, MBartTokenizer
+from transformrs import pipeline 
 class email_generator:
         
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     def generate_email(self, userPrompt =" professionall email", start="Dear" ,end="Yours sincerely"):
       
@@ -26,13 +28,32 @@ class email_generator:
         presence_penalty=0.75
         )
         return response.get("choices")[0]['text']
+    
 
-    def replace_spaces_with_pluses(self, sample):
-        """Returns a string with each space being replaced with a plus so the email hyperlink can be formatted properly"""
+    def Email_out(self, sample):
+       
         changed = list(sample)
         for i, c in enumerate(changed):
             if(c == ' ' or c =='  ' or c =='   ' or c=='\n' or c=='\n\n'):
                 changed[i] = '+'
-        return ''.join(changed)
+                result=''.join(changed)
+        return result
+    
+    def generate_arabic(self,response):
+        inputs=response.get("choices")[0]['text']
+        
+       # model_nm="akhooli/mbart-large-cc25-en-ar"
+        #max_length=500
+        #transulator=pipeline("translation",model=model_nm)
+       
+        model =AutoModelForSeq2SeqLM.from_pretrained("akhooli/mbart-large-cc25-en-ar")
+        tokenizer = MBartTokenizer.from_pretrained("akhooli/mbart-large-cc25-en-ar")
+        batch = tokenizer.prepare_seq2seq_batch(src_texts=[inputs],
+                                                src_lang="en_XX")
+        translated_tokens = model.generate(**batch,
+                                           decoder_start_token_id=tokenizer.lang_code_to_id["ar_AR"])
+        translation = tokenizer.batch_decode(translated_tokens,
+                                             skip_special_tokens=True)[0]
+        return translation
 
 
