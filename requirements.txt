@@ -1,5 +1,5 @@
 openai==0.24.0
-tensorflow==2.10.0
+tensorflow==2.0.0
 streamlit==1.14.0
 transformers==4.3.0
 torch==1.12.1
