@@ -5,6 +5,7 @@ Created on Mon Oct 31 21:45:43 2022
 @author: Amina Anjoom
 """
 import streamlit as st
+import pyarrow as pa
 #import openai
 from email_generator import email_generator
 
@@ -25,12 +26,11 @@ with st.form(key="form"):
         with st.spinner("Generating Email..."):
             output = backend.generate_email(prompt, start)
         st.markdown("# Email Output:")
-        st.subheader(start + output )
         st.markdown("____")
         st.text(output)
     submit_button2 = st.form_submit_button(label='Arabic Translation')
     if submit_button2:
-        out=output
+        out= backend.generate_email(prompt, start)
         with st.spinner("Generating translation..."):
             translation = backend.generate_arabic(out)
         st.markdown("# Email Output:")

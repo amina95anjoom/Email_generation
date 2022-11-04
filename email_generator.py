@@ -10,10 +10,10 @@ Original file is located at
 import openai
 import torch
 from transformers import AutoModelForSeq2SeqLM, MBartTokenizer
-from transformrs import pipeline 
+from transformers import pipeline 
 class email_generator:
         
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     def generate_email(self, userPrompt =" professionall email", start="Dear" ,end="Yours sincerely"):
       
@@ -39,8 +39,8 @@ class email_generator:
                 result=''.join(changed)
         return result
     
-    def generate_arabic(self,response):
-        inputs=response.get("choices")[0]['text']
+    def generate_arabic(self,result):
+        inputs=result
         
        # model_nm="akhooli/mbart-large-cc25-en-ar"
         #max_length=500
@@ -55,5 +55,4 @@ class email_generator:
         translation = tokenizer.batch_decode(translated_tokens,
                                              skip_special_tokens=True)[0]
         return translation
-
 
